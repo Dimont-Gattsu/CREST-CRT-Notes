@@ -67,11 +67,11 @@ nmap -p 79 --script finger <IP>
 
 ### Manual: check response differences
 ```
-for u in root admin test user oracle; do
+while read -r u; do
   echo "[*] $u"
-  printf "$u\r\n" | nc -nv -w 3 <IP> 79
+  printf "%s\r\n" "$u" | nc -nv -w 3 <IP> 79
   echo
-done
+done < wordlist.txt
 
 printf "thisuserdoesnotexist\r\n" | nc -nv -w 3 <IP> 79
 ```
