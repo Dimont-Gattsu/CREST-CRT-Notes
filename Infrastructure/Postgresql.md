@@ -3,15 +3,6 @@
 
 PostgreSQL is a relational database server commonly used by web applications and internal services.
 
-In CRT-style environments, PostgreSQL may lead to:
-- Credential disclosure
-- Database dumping
-- File read access
-- Command execution (if misconfigured)
-- Lateral movement
-
-
-
 # 1. Detection
 
 ## Nmap
