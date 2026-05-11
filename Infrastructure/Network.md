@@ -301,6 +301,7 @@ sudo ip route add default via 172.16.1.1
 **What the above does**
 * Sets the default route
 * Tells the OS: "For traffic not destined for my local subnet, send it to 172.16.1.1
+* To remove, replace 'add' with 'del'.
 
 #### Configure DNS
 ```
@@ -372,7 +373,7 @@ sudo ip route add 172.16.1.0/24 via 192.168.1.254
 ```
 sudo ip route add 10.10.10.0/24 via 172.16.1.1
 ```
-
+* To remove, replace 'add' with 'del'.
 
 ## Service Identification 
 
