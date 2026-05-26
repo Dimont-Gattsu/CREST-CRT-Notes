@@ -417,8 +417,8 @@ telnet example.com 80
 curl -I http://example.com
 ```
 
-### wget
+### Domain Controller Identification
 ```
-wget --server-response http://example.com
+nltest /dsgetdc:domain.local
 ```
 
