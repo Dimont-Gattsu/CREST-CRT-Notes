@@ -20,6 +20,11 @@ ffuf  -u http://SERVER_IP:PORT/blog/FUZZ.php  -w wordlist.txt
 ffuf -w wordlist.txt:FUZZ -u http://SERVER_IP:PORT/FUZZ -recursion -recursion-depth 1 -e .php -v
 ```
 
+### Subdomain Fuzzing
+```
+ffuf -w wordlist.txt:FUZZ -u http://FUZZ.academy.htb:PORT
+```
+
 ### VHost Fuzzing
 ```
 ffuf -w wordlist.txt:FUZZ -u http://academy.htb:PORT/ -H 'Host: FUZZ.academy.htb' -fs xxx
