@@ -56,4 +56,8 @@ snmpwalk -c public -v2c 192.168.1.1
 snmpwalk -c public -v2c 192.168.1.1 .1.3.6.1.2.1.1.1.0
 ```
 
+### QUICK TROPHY FIND
+```
+snmpwalk -c public -v2c 192.168.1.1 | grep 'trophy'
+```
 
