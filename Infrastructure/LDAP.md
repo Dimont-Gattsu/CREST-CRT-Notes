@@ -1,6 +1,6 @@
 # LDAP / Active Directory LDAP (TCP/389, TCP/636)
 
-DAP (Lightweight Directory Access Protocol) is used to query directory services, most commonly **Microsoft Active Directory**. Misconfigurations can allow **unauthenticated or low-privilege enumeration** of users, groups, computers, and domain structure.  
+LDAP (Lightweight Directory Access Protocol) is used to query directory services, most commonly **Microsoft Active Directory**. Misconfigurations can allow **unauthenticated or low-privilege enumeration** of users, groups, computers, and domain structure.  
 Default ports:
 - **389/TCP** – LDAP (cleartext or StartTLS)
 - **636/TCP** – LDAPS (SSL/TLS)
@@ -112,13 +112,11 @@ ldapsearch -x -H ldap://<IP> -D "user@example.local" -w password -b "DC=example,
 ### Users with SPNs (Kerberoastable)
 #### No Authentication
 ```
-ldapsearch -x -H ldap://<IP> -b "DC=example,DC=local" \
-  "(servicePrincipalName=*)" sAMAccountName servicePrincipalName
+ldapsearch -x -H ldap://<IP> -b "DC=example,DC=local" "(servicePrincipalName=*)" sAMAccountName servicePrincipalName
 ```
 #### Authenticated
 ```
-ldapsearch -x -H ldap://<IP> -D "user@example.local" -w password -b "DC=example,DC=local" \
-  "(servicePrincipalName=*)" sAMAccountName servicePrincipalName
+ldapsearch -x -H ldap://<IP> -D "user@example.local" -w password -b "DC=example,DC=local" "(servicePrincipalName=*)" sAMAccountName servicePrincipalName
 ```
 
 ### ASREPRoast Candidates (DONT_REQ_PREAUTH)
@@ -126,18 +124,15 @@ ldapsearch -x -H ldap://<IP> -D "user@example.local" -w password -b "DC=example,
 #### No Authentication
 ```
 ldapsearch -x -H ldap://<IP> -b "DC=example,DC=local" \
-  "(&(objectClass=user)(userAccountControl:1.2.840.113556.1.4.803:=4194304))" \
-  sAMAccountName userPrincipalName
+  "(&(objectClass=user)(userAccountControl:1.2.840.113556.1.4.803:=4194304))" sAMAccountName userPrincipalName
 ```
 
 #### Authenticated
 ```
-ldapsearch -x -H ldap://<IP> -b "DC=example,DC=local" -D "user@example.local" -w password \
-  "(&(objectClass=user)(userAccountControl:1.2.840.113556.1.4.803:=4194304))" \
-  sAMAccountName userPrincipalName
+ldapsearch -x -H ldap://<IP> -b "DC=example,DC=local" -D "user@example.local" -w password "(&(objectClass=user)(userAccountControl:1.2.840.113556.1.4.803:=4194304))" sAMAccountName userPrincipalName
 ```
 
-### Passord Policy
+### Password Policy
 
 #### No Authentication 
 ```
