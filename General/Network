@@ -1,5 +1,22 @@
 # Network Enumeration
 
+### One-liner for Host Discovery, TCP & UDP script scans
+```
+NETWORK="10.0.0.0/24"
+mkdir nmap && cd nmap
+
+nmap -sn "$NETWORK" -oG - | awk '/Status: Up/{print $2}' > live_targets.txt && nmap -sC -sV -Pn -T4 --open -oA tcp-open -iL live_targets.txt && nmap -sU -Pn -n --open -oA udp-open -iL live_targets.txt
+```
+
+### Nessus ports output
+```
+echo -n "T:"
+awk '/Ports:/{for(i=1;i<=NF;i++) if($i ~ /^[0-9]+\/open\/tcp$/) {split($i,a,"/"); print a[1]}}' tcp-open.gnmap | paste -sd, -
+
+echo -n "U:"
+awk '/Ports:/{for(i=1;i<=NF;i++) if($i ~ /^[0-9]+\/open\/udp$/) {split($i,a,"/"); print a[1]}}' udp-open.gnmap | paste -sd, -
+```
+
 ## Host Discovery
 
 ### Fping
@@ -301,7 +318,6 @@ sudo ip route add default via 172.16.1.1
 **What the above does**
 * Sets the default route
 * Tells the OS: "For traffic not destined for my local subnet, send it to 172.16.1.1
-* To remove, replace 'add' with 'del'.
 
 #### Configure DNS
 ```
@@ -373,7 +389,12 @@ sudo ip route add 172.16.1.0/24 via 192.168.1.254
 ```
 sudo ip route add 10.10.10.0/24 via 172.16.1.1
 ```
-* To remove, replace 'add' with 'del'.
+
+### nexthop
+Used to specify multiple next‑hop gateways (usually for load‑balancing or redundancy) for a destination:
+```
+ip route add <DEST> nexthop via <IP1> nexthop via <IP2>...
+```
 
 ## Service Identification 
 
@@ -400,3 +421,4 @@ curl -I http://example.com
 ```
 wget --server-response http://example.com
 ```
+
