@@ -1,10 +1,3 @@
-# LDAP / Active Directory LDAP (TCP/389, TCP/636)
-
-LDAP (Lightweight Directory Access Protocol) is used to query directory services, most commonly **Microsoft Active Directory**. Misconfigurations can allow **unauthenticated or low-privilege enumeration** of users, groups, computers, and domain structure.  
-Default ports:
-- **389/TCP** – LDAP (cleartext or StartTLS)
-- **636/TCP** – LDAPS (SSL/TLS)
-
 ## Detection
 
 ### nmap
@@ -65,6 +58,10 @@ ldapsearch -x -H ldap://<IP> -b "DC=example,DC=local" \
 ```
 ldapsearch -x -H ldap://<IP> -D "user@example.local" -w password -b "DC=example,DC=local" \
   "(objectClass=user)" sAMAccountName userPrincipalName memberOf
+```
+#### Specific User
+```
+ldapsearch -x -H ldap://<ip> -b "dc=example,dc=com" "(sn=white)"
 ```
 
 ### Enumerate Domain Groups
@@ -250,4 +247,58 @@ set RHOSTS target.com
 set USERNAME admin
 set PASS_FILE passwords.txt
 run
+```
+
+## Attributes & Object Classes
+
+### Attributes
+Identity & Core
+```
+dn, distinguishedName, objectClass, objectCategory, cn, name, sAMAccountName, userPrincipalName, memberOf, description
+```
+
+Name & Personal
+```
+givenName, sn, displayName, title, department, company
+```
+
+Contact
+```
+mail, telephoneNumber, mobile, homePhone, facsimileTelephoneNumber
+```
+
+Address
+```
+streetAddress, l, st, postalCode, c
+```
+
+Account & Security
+```
+userAccountControl, pwdLastSet, lastLogon, lastLogonTimestamp, servicePrincipalName, userPassword, msDS-AllowedToDelegateTo, msDS-AllowedToActOnBehalfOfOtherIdentity
+```
+
+Relations
+```
+manager, directReports, member
+```
+
+Profile & Paths
+```
+profilePath, homeDirectory, homeDrive, scriptPath
+```
+
+Misc
+```
+info, wWWHomePage, employeeID, proxyAddresses, jpegPhoto
+```
+
+### Object Classes
+```
+user
+
+contact
+
+group
+
+computer
 ```
