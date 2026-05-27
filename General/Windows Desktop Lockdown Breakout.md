@@ -1,6 +1,10 @@
 
 # Windows Desktop Lockdown Escape (CRT-Oriented)
 
+## Enumerate Usernames
+Use file-sharing options on files.
+
+
 Goal: Escape a restricted desktop (kiosk, Citrix, GPO lockdown, assigned app) and gain OS-level command execution.
 
 # 1. Step 1 – Gain ANY Dialogue Box
