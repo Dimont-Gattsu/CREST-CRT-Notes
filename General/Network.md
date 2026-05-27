@@ -11,10 +11,10 @@ nmap -sn "$NETWORK" -oG - | awk '/Status: Up/{print $2}' > live_targets.txt && n
 ### Nessus ports output
 ```
 echo -n "T:"
-awk '/Ports:/{for(i=1;i<=NF;i++) if($i ~ /^[0-9]+\/open\/tcp$/) {split($i,a,"/"); print a[1]}}' tcp-open.gnmap | paste -sd, -
+awk '/Ports:/{for(i=1;i<=NF;i++) if($i ~ /^[0-9]+\/open\/tcp/) {split($i,a,"/"); print a[1]}}' tcp-open.gnmap | paste -sd, -
 
 echo -n "U:"
-awk '/Ports:/{for(i=1;i<=NF;i++) if($i ~ /^[0-9]+\/open\/udp$/) {split($i,a,"/"); print a[1]}}' udp-open.gnmap | paste -sd, -
+awk '/Ports:/{for(i=1;i<=NF;i++) if($i ~ /^[0-9]+\/open\/udp/) {split($i,a,"/"); print a[1]}}' udp-open.gnmap | paste -sd, -
 ```
 
 ## Host Discovery
