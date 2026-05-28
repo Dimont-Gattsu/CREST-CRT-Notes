@@ -384,10 +384,11 @@ sudo ip route add <destination_network> via <gateway_ip> dev <interface>
 sudo ip route add 172.16.1.0/24 via 192.168.1.254
 # then try to curl to 172.16.1.1 to see if reachable
 ```
-#### If already set up access to 172.16.1.1 above, then we can use that again to double pivot.
-#### For example, connect to 10.10.10.1 via 172.16.1.1
+
+#### Double pivot
 ```
-sudo ip route add 10.10.10.0/24 via 172.16.1.1
+ 
+ip route add {destination_ip}/32 via {ROUTER_2} nexthop via {ROUTER 1} dev eth0
 ```
 
 ### nexthop
