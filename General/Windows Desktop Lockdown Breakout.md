@@ -1,9 +1,11 @@
 
-# Windows Desktop Lockdown Escape (CRT-Oriented)
+# Windows Desktop Lockdown Escape
 
 ## Enumerate Usernames
-Use file-sharing options on files.
+Use file-sharing options on files. You will only be able to share with users that exist.
 
+## Searching for the flag
+You can use the "Global Search" within explorer (ensuring you search from C:, and ensure see hidden files is ticked)
 
 Goal: Escape a restricted desktop (kiosk, Citrix, GPO lockdown, assigned app) and gain OS-level command execution.
 
