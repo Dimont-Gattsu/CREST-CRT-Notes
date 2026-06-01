@@ -1,2 +1,2 @@
 # CREST-CRT-Notes
-Cheatsheet for CREST CRT Exam
+Cheatsheet used to pass the CREST CRT Exam.
